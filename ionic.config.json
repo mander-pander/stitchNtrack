@@ -1,0 +1,7 @@
+{
+  "name": "Stitch-N-Track",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "react"
+}
