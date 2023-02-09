@@ -1,22 +1,51 @@
 import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar } from '@ionic/react';
-import ExploreContainer from '../components/ExploreContainer';
+import { useEffect, useState } from 'react';
+import axios from 'axios';
 import './Tab2.css';
 
 const Tab2: React.FC = () => {
+  const [project, setProject] = useState('');
+
+  async function handleAddProject(e: any) {
+    e.preventDefault();
+    let res = await axios.post('http://localhost:3001/project')
+    console.log(res);
+  }
+
   return (
     <IonPage>
       <IonHeader>
         <IonToolbar>
-          <IonTitle>Tab 2</IonTitle>
+          <IonTitle>Add a Project</IonTitle>
         </IonToolbar>
       </IonHeader>
       <IonContent fullscreen>
         <IonHeader collapse="condense">
           <IonToolbar>
-            <IonTitle size="large">Tab 2</IonTitle>
+            <IonTitle size="large">Add a Project</IonTitle>
           </IonToolbar>
         </IonHeader>
-        <ExploreContainer name="Tab 2 page" />
+        <form onSubmit={handleAddProject}>
+          <label>Project Name:
+            <input type="text" />
+          </label>
+          <label>Yarn:
+            <input type="text" />
+          </label>
+          <label>Needle/Hook Size:
+            <input type="number" />
+          </label>
+          <label>Gauge:
+            <input type="number" />
+          </label>
+          <label>Pattern Repeats:
+            <input type="text" />
+          </label>
+          <label>Date Started:
+            <input type="date" />
+          </label>
+          <input type="submit" />
+        </form>
       </IonContent>
     </IonPage>
   );
