@@ -34,6 +34,14 @@ app.get("/project", (req, res) => {
     });
 });
 
+app.post("/project", (req, res) => {
+    // connection.query(
+    //     "INSERT INTO project SET"
+    // )
+    console.log("cowman")
+    res.send("success")
+})
+
 app.listen(PORT, () => {
     console.log(`Server listening on ${PORT}`);
 });
