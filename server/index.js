@@ -35,11 +35,13 @@ app.get("/project", (req, res) => {
 });
 
 app.post("/project", (req, res) => {
-    // connection.query(
-    //     "INSERT INTO project SET"
-    // )
-    console.log("cowman")
-    res.send("success")
+    let data = req.body.project;
+    connection.query(
+        "INSERT INTO project (name, yarn_id, needleSize, gauge, patternRepeat_id, user_id) VALUES (?, ?, ?, ?, ?, ?)", [data.name, data.yarn_id, data.needleSize, data.gauge, data.patternRepeat_id, data.user_id], (error) => {
+            console.log("success")
+            console.log("cowman", data)
+            if (error) return res.json({error: error});
+        });
 })
 
 app.listen(PORT, () => {
