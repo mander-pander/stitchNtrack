@@ -37,12 +37,24 @@ app.get("/project", (req, res) => {
 app.post("/project", (req, res) => {
     let data = req.body.project;
     connection.query(
-        "INSERT INTO project (name, yarn_id, needleSize, gauge, patternRepeat_id, user_id) VALUES (?, ?, ?, ?, ?, ?)", [data.name, data.yarn_id, data.needleSize, data.gauge, data.patternRepeat_id, data.user_id], (error) => {
+        "INSERT INTO project (name, needle_size, gauge, date_started, date_finished, user_id) VALUES (?, ?, ?, ?, ?, ?)", [data.name, data.needle_size, data.gauge, data.date_started, data.date_finished, data.user_id], (error) => {
             console.log("success")
             console.log("cowman", data)
             if (error) return res.json({error: error});
-        });
-})
+        }
+    );
+});
+
+app.post("/yarn", (req, res) => {
+    let data = req.body.yarn;
+    connection.query(
+        "INSERT INTO yarn (name, weight, yardage, color, project_id) VALUES (?, ?, ?, ?, ?)", [data.name, data.weight, data.yardage, data.color, data.project_id], (error) => {
+            console.log("success")
+            console.log("cowman", data)
+            if (error) return res.json({error: error});
+        }
+    );
+});
 
 app.listen(PORT, () => {
     console.log(`Server listening on ${PORT}`);
