@@ -6,11 +6,11 @@ import './Tab2.css';
 const Tab2: React.FC = () => {
   const [project, setProject] = useState({
     name: '',
-    yarn_id: 0,
-    needleSize: 0,
+    needle_size: 0,
     gauge: 0,
-    patternRepeat_id: 0,
-    user_id: 0
+    user_id: 0,
+    date_started: '',
+    date_finished: ''
   });
 
   const handleAddProject = async(e: any) => {
@@ -46,19 +46,18 @@ const Tab2: React.FC = () => {
           <label>Project Name:
             <input type="text" name="name" value={project.name}  onChange={handleChange}/>
           </label>
-          <label>Yarn:
-            <input type="text" name="yarn_id" value={project.yarn_id} onChange={handleChange}/>
-          </label>
           <label>Needle/Hook Size:
-            <input type="number" name="needleSize" value={project.needleSize} onChange={handleChange}/>
+            <input type="number" name="needle_size" value={project.needle_size} onChange={handleChange}/>
           </label>
           <label>Gauge:
             <input type="number" name="gauge" value={project.gauge} onChange={handleChange}/>
           </label>
-          <label>Pattern Repeats:
-            <input type="text" name="patternRepeat_id" value={project.patternRepeat_id} onChange={handleChange}/>
+          <label>Start Date:
+            <input type="date" name="date_started" value={project.date_started} onChange={handleChange}/>
           </label>
-
+          <label>Finish Date:
+            <input type="date" name="date_finished" value={project.date_finished} onChange={handleChange}/>
+          </label>
           <input type="submit" />
         </form>
       </IonContent>
