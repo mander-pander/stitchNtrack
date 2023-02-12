@@ -35,26 +35,24 @@ app.get("/project", (req, res) => {
 });
 
 app.post("/project", (req, res) => {
-    let data = req.body.project;
+    let proj = req.body.project;
+    let yarn = req.body.yarn;
     connection.query(
-        "INSERT INTO project (name, needle_size, gauge, date_started, date_finished, user_id) VALUES (?, ?, ?, ?, ?, ?)", [data.name, data.needle_size, data.gauge, data.date_started, data.date_finished, data.user_id], (error) => {
-            console.log("success")
-            console.log("cowman", data)
+        "INSERT INTO project (name, needle_size, gauge, date_started, date_finished, user_id) VALUES (?, ?, ?, ?, ?, ?)", [proj.name, proj.needle_size, proj.gauge, proj.date_started, proj.date_finished, proj.user_id], (error) => {
+            console.log("cowman", proj);
+            if (error) return res.json({error: error});
+        }
+    );
+    connection.query(
+        "INSERT INTO yarn (name, weight, yardage, color, project_id) VALUES (?, ?, ?, ?, ?)", [yarn.yarn_name, yarn.weight, yarn.yardage, yarn.color, yarn.project_id], (error) => {
+            console.log("yarn", yarn);
             if (error) return res.json({error: error});
         }
     );
 });
 
-app.post("/yarn", (req, res) => {
-    let data = req.body.yarn;
-    connection.query(
-        "INSERT INTO yarn (name, weight, yardage, color, project_id) VALUES (?, ?, ?, ?, ?)", [data.name, data.weight, data.yardage, data.color, data.project_id], (error) => {
-            console.log("success")
-            console.log("cowman", data)
-            if (error) return res.json({error: error});
-        }
-    );
-});
+
+
 
 app.listen(PORT, () => {
     console.log(`Server listening on ${PORT}`);
