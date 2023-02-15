@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { add } from 'ionicons/icons';
-import { IonIcon } from '@ionic/react';
+import { IonIcon, IonItem, IonLabel, IonInput } from '@ionic/react';
 
 const Yarn = ({yarn_name, weight, yardage, color, onChange}:any) => {
     const [show, setShow] = useState(false);
@@ -10,25 +10,24 @@ const Yarn = ({yarn_name, weight, yardage, color, onChange}:any) => {
     };
 
     return (
-        <div>
-            <IonIcon icon={add} onClick={toggleShow} /> Yarn Info:
+        <IonItem>
+            <button>
+             <IonIcon icon={add} onClick={toggleShow} />
+            </button>
+            <IonLabel position="stacked"> Yarn Info:</IonLabel>
             {show ?
                 <div>
-                    <label> Name:
-                        <input type="text" name="yarn_name" value={yarn_name} onChange={onChange} />
-                    </label>
-                    <label> weight:
-                        <input type="number" name="weight" value={weight} onChange={onChange} />
-                    </label>
-                    <label> Yardage:
-                        <input type="number" name="yardage" value={yardage} onChange={onChange} />
-                    </label>
-                    <label> Color:
-                        <input type="text" name="color" value={color} onChange={onChange} />
-                    </label>
+                    <IonLabel position="stacked"> Name: </IonLabel>
+                        <IonInput type="text" name="yarn_name" value={yarn_name} onChange={onChange}></IonInput>
+                    <IonLabel position="stacked"> Weight: </IonLabel>
+                        <IonInput type="number" name="weight" value={weight} onChange={onChange}></IonInput>
+                    <IonLabel position="stacked"> Yardage: </IonLabel>
+                        <IonInput type="number" name="yardage" value={yardage} onChange={onChange}></IonInput>
+                    <IonLabel position="stacked"> Color:  </IonLabel>
+                        <IonInput type="text" name="color" value={color} onChange={onChange}></IonInput>
                 </div>
             : null}
-        </div>
+        </IonItem>
     );
 }
 

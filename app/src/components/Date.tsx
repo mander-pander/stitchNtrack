@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { add } from 'ionicons/icons';
-import { IonIcon } from '@ionic/react';
+import { IonIcon, IonItem, IonLabel, IonInput } from '@ionic/react';
 
 const Date = ({date_started, date_finished, onChange}: any) => {
     const [startDateShow, setStartDateShow] = useState(false);
@@ -16,11 +16,20 @@ const Date = ({date_started, date_finished, onChange}: any) => {
 
     return (
         <div>
-            <IonIcon icon={add} onClick={toggleStartShow}/> Start Date:
-            {startDateShow ? <input type="date" name="date_started" value={date_started} onChange={onChange}/> : null }
-
-            <IonIcon icon={add} onClick={toggleFinShow}/> Finish Date:
-            {finDateShow ? <input type="date" name="date_finished" value={date_finished} onChange={onChange}/> : null }
+            <IonItem>
+                <button>
+                    <IonIcon icon={add} onClick={toggleStartShow} />
+                </button>
+                <IonLabel position="stacked">Start Date:</IonLabel>
+                {startDateShow ? <IonInput type="date" name="date_started" value={date_started} onChange={onChange}></IonInput> : null }
+            </IonItem>
+            <IonItem>
+                <button>
+                    <IonIcon icon={add} onClick={toggleFinShow} />
+                </button>
+                <IonLabel position="stacked">Finish Date:</IonLabel>
+                    {finDateShow ? <IonInput type="date" name="date_finished" value={date_finished} onChange={onChange}></IonInput> : null }
+            </IonItem>
         </div>
 
     )
