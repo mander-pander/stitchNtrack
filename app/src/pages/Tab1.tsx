@@ -42,6 +42,21 @@ function TriggerWithModal({ project }: any) {
   const modal = useRef<HTMLIonModalElement>(null);
   const [edit, setEdit] = useState(false);
 
+  const handleProjectUpdate = async (e: any) => {
+    e.preventDefault();
+    setEdit(false);
+    let res = await axios.put(`http://localhost:3001/project/${project.id}`, {
+      needle_size: "{project.needle_size}",
+      gauge: "{project.gauge}",
+    });
+    console.log(res);
+  }
+
+  const handleChange = (e: any) => {
+    e.preventDefault();
+
+  }
+
   return (
     <>
       <IonGrid className={styles.projectItem}>
@@ -84,11 +99,18 @@ function TriggerWithModal({ project }: any) {
                 <IonTitle>{project.name}</IonTitle>
               </IonToolbar>
             </IonHeader>
-            <IonContent className="ion-padding">
-              <p>Needle or Hook Size: </p> <input value={project.needle_size}/>
-              <p>Gauge: </p> <input value={project.gauge}/>
-              <p>Date Started: </p> <input value={project.date_started} />
-              <p>Date Finished: </p> <input value={project.date_finished} />
+            <IonContent >
+              <div className={styles.editPage}>
+                <p>Needle or Hook Size: </p>
+                <input type="number" defaultValue={project.needle_size}/>
+                <p>Gauge: </p>
+                <input type="number" defaultValue={project.gauge}/>
+                <p>Date Started: </p>
+                <input defaultValue={project.date_started}/>
+                <p>Date Finished: </p>
+                <input defaultValue={project.date_finished} />
+                <button onClick={handleProjectUpdate}>Update Project</button>
+              </div>
             </IonContent>
           </>
         }

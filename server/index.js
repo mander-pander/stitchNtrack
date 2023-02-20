@@ -30,7 +30,6 @@ app.get("/project", (req, res) => {
     function (err, rows) {
         if (err) throw err;
         res.send(rows);
-        console.log(rows);
     });
 });
 
@@ -51,6 +50,9 @@ app.post("/project", (req, res) => {
     );
 });
 
+app.put("/project/:projectId", (req, res) => {
+    console.log("put", req.params);
+} )
 
 
 
