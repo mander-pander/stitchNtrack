@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { add } from 'ionicons/icons';
-import { IonIcon, IonItem, IonLabel, IonInput, IonGrid, IonRow, IonCol } from '@ionic/react';
+import { IonIcon, IonLabel, IonInput, IonGrid, IonRow, IonCol } from '@ionic/react';
 
 const Tool = ({ needle_size, onIonChange }: any) => {
     const [show, setShow] = useState(false);
@@ -11,15 +11,13 @@ const Tool = ({ needle_size, onIonChange }: any) => {
     };
 
     return (
-        <IonItem>
+        <div>
             <IonGrid>
                 <IonRow>
                     <IonCol size="auto">
                         <button  onClick={toggleShow}>
                             <IonIcon icon={add} />
                         </button>
-                    </IonCol>
-                    <IonCol>
                         <IonLabel position="stacked"> Needle/Hook Size: </IonLabel>
                     </IonCol>
                 </IonRow>
@@ -29,7 +27,7 @@ const Tool = ({ needle_size, onIonChange }: any) => {
                     </IonCol>
                 </IonRow>
             </IonGrid>
-        </IonItem>
+        </div>
     );
 }
 
