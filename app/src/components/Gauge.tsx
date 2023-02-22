@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { add } from 'ionicons/icons';
-import { IonIcon, IonGrid, IonRow, IonCol, IonLabel, IonInput } from '@ionic/react';
+import { IonIcon, IonItem, IonGrid, IonRow, IonCol, IonLabel, IonInput } from '@ionic/react';
 
 const Gauge = ({ gauge, onIonChange }: any) => {
     const [show, setShow] = useState(false);
@@ -21,11 +21,11 @@ const Gauge = ({ gauge, onIonChange }: any) => {
                         </button>
                         <IonLabel position="stacked"> Gauge: </IonLabel>
                     </IonCol>
-                </IonRow>
-                <IonRow>
+                <IonItem>
                     <IonCol>
                         {show ? <IonInput type="number" name="gauge" value={gauge} onIonChange={onIonChange}></IonInput> : null}
                     </IonCol>
+                </IonItem>
                 </IonRow>
             </IonGrid>
         </div>

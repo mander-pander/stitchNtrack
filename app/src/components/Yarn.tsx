@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { add } from 'ionicons/icons';
-import { IonIcon, IonLabel, IonInput, IonGrid, IonRow, IonCol } from '@ionic/react';
+import { IonIcon, IonItem, IonLabel, IonInput, IonGrid, IonRow, IonCol } from '@ionic/react';
 
 const Yarn = ({ yarn_name, weight, yardage, color, onIonChange }: any) => {
     const [show, setShow] = useState(false);
@@ -22,26 +22,34 @@ const Yarn = ({ yarn_name, weight, yardage, color, onIonChange }: any) => {
                     </IonCol>
                 </IonRow>
 
-                    {show ?
-                        <div>
-                            <IonRow>
-                            <IonCol size="auto"><IonLabel> Name: </IonLabel></IonCol>
-                            <IonCol><IonInput type="text" name="yarn_name" value={yarn_name} onIonChange={onIonChange}></IonInput></IonCol>
-                            </IonRow>
-                            <IonRow>
-                            <IonCol size="auto"><IonLabel> Weight: </IonLabel></IonCol>
-                            <IonCol><IonInput type="number" name="weight" value={weight} onIonChange={onIonChange}></IonInput></IonCol>
-                            </IonRow>
-                            <IonRow>
-                            <IonCol size="auto"><IonLabel position="stacked"> Yardage: </IonLabel></IonCol>
-                            <IonCol><IonInput type="number" name="yardage" value={yardage} onIonChange={onIonChange}></IonInput></IonCol>
-                            </IonRow>
-                            <IonRow>
-                            <IonCol size="auto"><IonLabel position="stacked"> Color:  </IonLabel></IonCol>
-                            <IonCol><IonInput type="text" name="color" value={color} onIonChange={onIonChange}></IonInput></IonCol>
-                            </IonRow>
-                        </div>
-                        : null}
+                {show ?
+                    <div>
+                        <IonRow>
+                            <IonItem>
+                                <IonCol size="auto"><IonLabel> Name: </IonLabel></IonCol>
+                                <IonCol><IonInput placeholder="Yarn name" type="text" name="yarn_name" value={yarn_name} onIonChange={onIonChange}></IonInput></IonCol>
+                            </IonItem>
+                        </IonRow>
+                        <IonRow>
+                            <IonItem>
+                                <IonCol size="auto"><IonLabel> Weight: </IonLabel></IonCol>
+                                <IonCol><IonInput type="number" name="weight" value={weight} onIonChange={onIonChange}></IonInput></IonCol>
+                            </IonItem>
+                        </IonRow>
+                        <IonRow>
+                            <IonItem>
+                                <IonCol size="auto"><IonLabel> Yardage: </IonLabel></IonCol>
+                                <IonCol><IonInput type="number" name="yardage" value={yardage} onIonChange={onIonChange}></IonInput></IonCol>
+                            </IonItem>
+                        </IonRow>
+                        <IonRow>
+                            <IonItem>
+                                <IonCol size="auto"><IonLabel> Color:  </IonLabel></IonCol>
+                                <IonCol><IonInput placeholder="Yarn color" type="text" name="color" value={color} onIonChange={onIonChange}></IonInput></IonCol>
+                            </IonItem>
+                        </IonRow>
+                    </div>
+                    : null}
             </IonGrid>
         </div>
     );
