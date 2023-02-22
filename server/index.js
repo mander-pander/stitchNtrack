@@ -54,6 +54,13 @@ app.put("/project/:projectId", (req, res) => {
     console.log("put", req.params);
 } )
 
+app.delete("/project", (req, res) => {
+    let params = req.query.data.project_id;
+    connection.query(
+        `DELETE FROM project WHERE id='${params}'`
+    );
+});
+
 
 
 app.listen(PORT, () => {
