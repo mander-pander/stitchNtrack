@@ -2,7 +2,7 @@ import { IonCard, IonCardHeader, IonCardContent, IonCardTitle, IonIcon, IonButto
 import styles from './Tab1.module.css';
 import { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
-
+import { trashOutline} from 'ionicons/icons';
 
 const Tab1: React.FC = () => {
   const [projects, setProjects] = useState<any[]>([]);
@@ -60,12 +60,22 @@ function TriggerWithModal({ project }: any) {
 
   }
 
+  const handleDelete = async (project_id: number) => {
+    let params = {data: {project_id}};
+      let res = await axios.delete(`http://localhost:3001/project/`, {
+        params
+      });
+      console.log(res);
+  }
+
   return (
     <>
       <div key={project.id}>
         <IonCard id={`open-modal-${project.id}`} >
           <IonCardHeader>
-            <IonCardTitle>{project.name}</IonCardTitle>
+            <IonCardTitle className={styles.projectTitle}>
+              {project.name}
+            </IonCardTitle>
             <IonCardContent>
               optional content here
             </IonCardContent>
@@ -93,6 +103,7 @@ function TriggerWithModal({ project }: any) {
               <p>Date Finished: {project.date_finished}</p>
               <p>Status: {project.status}</p>
               <p>Notes: {project.notes}</p>
+              <IonIcon icon={trashOutline} onClick={() => handleDelete(project.id)}/>
             </IonContent>
           </>
         }
