@@ -33,6 +33,15 @@ app.get("/project", (req, res) => {
     });
 });
 
+app.get("/yarn", (req, res) => {
+    connection.query(
+        "SELECT * FROM yarn",
+    function (err, rows) {
+        if (err) throw err;
+        res.send(rows);
+    });
+});
+
 app.post("/project", (req, res) => {
     let proj = req.body.project;
     let yarn = req.body.yarn;
