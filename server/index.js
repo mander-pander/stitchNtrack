@@ -59,6 +59,16 @@ app.post("/project", (req, res) => {
     );
 });
 
+app.post("/yarn", (req, res) => {
+    let yarn = req.body.yarn;
+    connection.query(
+        "INSERT INTO yarn (name, weight, yardage, color, project_id) VALUES (?, ?, ?, ?, ?)", [yarn.yarn_name, yarn.weight, yarn.yardage, yarn.color, yarn.project_id], (error) => {
+            console.log("yarn", yarn);
+            if (error) return res.json({error: error});
+        }
+    );
+});
+
 app.put("/project/:projectId", (req, res) => {
     console.log("put", req.params);
 } )

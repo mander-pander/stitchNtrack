@@ -2,7 +2,7 @@ import { IonModal, IonCard, IonCardHeader, IonCardContent, IonCardTitle, IonIcon
 import { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
 import { trashOutline } from 'ionicons/icons';
-
+import Yarn from '../components/Yarn';
 
 const Tab4: React.FC = () => {
   const [yarns, setYarns] = useState<any[]>([]);
@@ -34,6 +34,14 @@ const Tab4: React.FC = () => {
         })
   });
 
+  const handleYarnChange = (e: any) => {
+    e.preventDefault();
+    setYarn({
+      ...yarn,
+      [e.target.name]: e.target.value
+    });
+  };
+
   return (
     <>
       {!addForm &&
@@ -59,7 +67,6 @@ const Tab4: React.FC = () => {
         </IonPage>
       }
       {addForm &&
-
         <IonPage>
           <IonHeader>
             <IonToolbar>
@@ -75,10 +82,12 @@ const Tab4: React.FC = () => {
                 <IonTitle size="large">Add Yarn To Stash</IonTitle>
               </IonToolbar>
             </IonHeader>
-            <h1>Pretend form is here!</h1>
+            <Yarn yarn_name={yarn.yarn_name} weight={yarn.weight} yardage={yarn.yardage} color={yarn.color} onIonChange={handleYarnChange} />
+            <IonButtons>
+              <IonButton onClick={handleAddYarn}>Add Yarn</IonButton>
+            </IonButtons>
           </IonContent>
         </IonPage>
-
       }
     </>
   );
