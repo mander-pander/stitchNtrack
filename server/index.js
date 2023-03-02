@@ -80,6 +80,13 @@ app.delete("/project", (req, res) => {
     );
 });
 
+app.delete("/yarn", (req, res) => {
+    let params = req.query.data.yarn_id;
+    connection.query(
+        `DELETE FROM yarn WHERE id='${params}'`
+    );
+});
+
 
 
 app.listen(PORT, () => {
