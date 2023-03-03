@@ -3,6 +3,7 @@ import { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
 import { trashOutline } from 'ionicons/icons';
 import Yarn from '../components/Yarn';
+import styles from './Tab4.module.css';
 
 const Tab4: React.FC = () => {
   const [yarns, setYarns] = useState<any[]>([]);
@@ -21,17 +22,20 @@ const Tab4: React.FC = () => {
     let res = await axios.post('http://localhost:3001/yarn', {
       yarn
     })
-    console.log(res);
+    setAddForm(false);
+    return res;
   }
 
   useEffect(() => {
-    axios.get(`http://localhost:3001/yarn`)
-      .then((result: any) => {
+    const getYarn = async() => {
+      try {
+        let result = await axios.get(`http://localhost:3001/yarn`)
         setYarns(result.data);
-      },
-        (error) => {
-          console.log(error);
-        })
+      } catch (error) {
+        setYarns([null]);
+      }
+    }
+    getYarn();
   });
 
   const handleYarnChange = (e: any) => {
@@ -54,15 +58,15 @@ const Tab4: React.FC = () => {
               </IonButtons>
             </IonToolbar>
           </IonHeader>
-          <IonContent fullscreen>
+          <IonContent fullscreen >
             <IonHeader collapse="condense">
               <IonToolbar>
                 <IonTitle size="large">Stash</IonTitle>
               </IonToolbar>
             </IonHeader>
-            <IonList inset={true}>
+            <div className={styles.listContainer}>
               {yarns.map((yarn) => <TriggerWithModal yarn={yarn} />)}
-            </IonList>
+            </div>
           </IonContent>
         </IonPage>
       }
@@ -105,18 +109,19 @@ function TriggerWithModal({ yarn }: any) {
       params
     });
     console.log(res);
-  }
+  };
 
   return (
     <>
       <div key={yarn.id}>
         <IonCard id={`open-modal-${yarn.id}`} >
+        <img alt="yarn" src="https://picsum.photos/150" />
           <IonCardHeader>
             <IonCardTitle>
               {yarn.name}
             </IonCardTitle>
             <IonCardContent>
-              optional content here
+              {yarn.yardage} yards in stash
             </IonCardContent>
           </IonCardHeader>
         </IonCard>
