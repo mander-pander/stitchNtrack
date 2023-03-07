@@ -1,55 +1,44 @@
-import { useState } from 'react';
-import { add } from 'ionicons/icons';
-import { IonIcon, IonItem, IonLabel, IonInput, IonGrid, IonRow, IonCol } from '@ionic/react';
+import {  IonItem, IonLabel, IonGrid, IonRow, IonCol } from '@ionic/react';
+import { InputNumber } from 'primereact/inputnumber';
+import { InputText } from 'primereact/inputtext';
 
-const Yarn = ({ yarn_name, weight, yardage, color, onIonChange }: any) => {
-    const [show, setShow] = useState(false);
 
-    const toggleShow = (e: any) => {
-        e.preventDefault();
-        setShow(!show);
-    };
+const Yarn = ({ yarn_name, weight, yardage, color, onChange }: any) => {
 
     return (
         <div>
             <IonGrid>
                 <IonRow>
                     <IonCol size="auto">
-                        <button onClick={toggleShow}>
-                            <IonIcon icon={add} />
-                        </button>
                         <IonLabel position="stacked"> Yarn Info:</IonLabel>
                     </IonCol>
                 </IonRow>
-
-                {show ?
                     <div>
                         <IonRow>
                             <IonItem>
-                                <IonCol size="auto"><IonLabel> Name: </IonLabel></IonCol>
-                                <IonCol><IonInput placeholder="Yarn name" type="text" name="yarn_name" value={yarn_name} onIonChange={onIonChange}></IonInput></IonCol>
+                                <IonCol size="auto"><label> Name: </label></IonCol>
+                                <IonCol><InputText placeholder="Yarn name" type="text" name="yarn_name" value={yarn_name} onChange={onChange}></InputText></IonCol>
                             </IonItem>
                         </IonRow>
                         <IonRow>
                             <IonItem>
-                                <IonCol size="auto"><IonLabel> Weight: </IonLabel></IonCol>
-                                <IonCol><IonInput type="number" name="weight" value={weight} onIonChange={onIonChange}></IonInput></IonCol>
+                                <IonCol size="auto"><label> Weight: </label></IonCol>
+                                <IonCol><InputNumber type="number" name="weight" value={weight} onChange={onChange}></InputNumber></IonCol>
                             </IonItem>
                         </IonRow>
                         <IonRow>
                             <IonItem>
-                                <IonCol size="auto"><IonLabel> Yardage: </IonLabel></IonCol>
-                                <IonCol><IonInput type="number" name="yardage" value={yardage} onIonChange={onIonChange}></IonInput></IonCol>
+                                <IonCol size="auto"><label> Yardage: </label></IonCol>
+                                <IonCol><InputNumber type="number" name="yardage" value={yardage} onChange={onChange}></InputNumber></IonCol>
                             </IonItem>
                         </IonRow>
                         <IonRow>
                             <IonItem>
-                                <IonCol size="auto"><IonLabel> Color:  </IonLabel></IonCol>
-                                <IonCol><IonInput placeholder="Yarn color" type="text" name="color" value={color} onIonChange={onIonChange}></IonInput></IonCol>
+                                <IonCol size="auto"><label> Color:  </label></IonCol>
+                                <IonCol><InputText placeholder="Yarn color" type="text" name="color" value={color} onChange={onChange}></InputText></IonCol>
                             </IonItem>
                         </IonRow>
                     </div>
-                    : null}
             </IonGrid>
         </div>
     );
